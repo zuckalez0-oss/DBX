@@ -1,0 +1,42 @@
+{
+    "2093": {
+        "project_number": "2093",
+        "save_date": "04/11/2025 15:01:46",
+        "pieces": [
+            {
+                "nome_arquivo": "2093_DES2001_12,70",
+                "forma": "rectangle",
+                "espessura": 12.7,
+                "qtd": 1.0,
+                "largura": 600.0,
+                "altura": 250.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2093"
+            },
+            {
+                "nome_arquivo": "2093_DES2002_12,70",
+                "forma": "rectangle",
+                "espessura": 12.7,
+                "qtd": 4.0,
+                "largura": 350.0,
+                "altura": 250.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2093"
+            }
+        ]
+    }
+}

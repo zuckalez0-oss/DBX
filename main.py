@@ -1123,7 +1123,7 @@ class MainWindow(QMainWindow):
     def generate_piece_code(self):
         project_number = self.projeto_input.text().strip()
         if not project_number: QMessageBox.warning(self, "Campo Obrigatório", "Inicie um projeto para definir o 'Nº do Projeto'."); return
-        new_code = self.code_generator.generate_new_code(project_number, prefix='VDS') #SUFIXO DOS CÓDIGOS
+        new_code = self.code_generator.generate_new_code(project_number, prefix='DES') #SUFIXO DOS CÓDIGOS
         if new_code: self.nome_input.setText(new_code); self.log_text.append(f"Código '{new_code}' gerado para o projeto '{project_number}'.")
     
     def add_manual_piece(self):
