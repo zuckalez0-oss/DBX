@@ -910,7 +910,7 @@ class MainWindow(QMainWindow):
         pdf_filename = os.path.splitext(excel_path)[0] + ".pdf"
         HEADER_ROW = 3 
         START_ROW = 4 
-        TOTAL_ROW = 208 # Linha "TOTAIS" ou "OBS SOBRE A PRODUÇÃO"
+        TOTAL_ROW = 209 # Linha "TOTAIS" ou "OBS SOBRE A PRODUÇÃO"
         LAST_EMPTY_ROW = 207 
 
         excel = None
@@ -1129,48 +1129,166 @@ class MainWindow(QMainWindow):
     def add_manual_piece(self):
         try:
             nome = self.nome_input.text().strip()
-            if not nome: QMessageBox.warning(self, "Campo Obrigatório", "'Nome/ID da Peça' é obrigatório."); return
+            if not nome: 
+                QMessageBox.warning(self, "Campo Obrigatório", "'Nome/ID da Peça' é obrigatório.")
+                return
+
             new_piece = {'furos': self.furos_atuais.copy()}
+            
+            # Garante que todas as colunas do DF existam no dicionário,
+            # mesmo que com valor 0 ou None, para o .loc funcionar
             for col in self.colunas_df:
-                if col != 'furos': new_piece[col] = 0.0
-            new_piece.update({'nome_arquivo': nome, 'forma': self.forma_combo.currentText()})
-            fields_map = { 'espessura': self.espessura_input, 'qtd': self.qtd_input, 'largura': self.largura_input, 'altura': self.altura_input, 'diametro': self.diametro_input, 'rt_base': self.rt_base_input, 'rt_height': self.rt_height_input, 'trapezoid_large_base': self.trapezoid_large_base_input, 'trapezoid_small_base': self.trapezoid_small_base_input, 'trapezoid_height': self.trapezoid_height_input }
+                if col not in new_piece:
+                    new_piece[col] = 0.0 # ou pd.NA se preferir
+
+            # Preenche o dicionário 'new_piece' com os dados da interface
+            new_piece.update({
+                'nome_arquivo': nome, 
+                'forma': self.forma_combo.currentText()
+            })
+            
+            fields_map = { 
+                'espessura': self.espessura_input, 
+                'qtd': self.qtd_input, 
+                'largura': self.largura_input, 
+                'altura': self.altura_input, 
+                'diametro': self.diametro_input, 
+                'rt_base': self.rt_base_input, 
+                'rt_height': self.rt_height_input, 
+                'trapezoid_large_base': self.trapezoid_large_base_input, 
+                'trapezoid_small_base': self.trapezoid_small_base_input, 
+                'trapezoid_height': self.trapezoid_height_input 
+            }
+            
             for key, field in fields_map.items():
                 new_piece[key] = float(field.text().replace(',', '.')) if field.text() else 0.0
-            self.manual_df = pd.concat([self.manual_df, pd.DataFrame([new_piece])], ignore_index=True)
+
+            # --- CORREÇÃO AQUI ---
+            # Em vez de pd.concat, usamos .loc para adicionar a nova linha (dicionário)
+            # ao final do DataFrame. É mais limpo e evita o FutureWarning.
+            self.manual_df.loc[len(self.manual_df)] = new_piece
+            # --- FIM DA CORREÇÃO ---
+
             self.log_text.append(f"Peça '{nome}' adicionada/atualizada.")
             self._clear_session(clear_project_number=False)
             self.update_table_display()
-        except ValueError: QMessageBox.critical(self, "Erro de Valor", "Campos numéricos devem conter números válidos.")
+            
+        except ValueError: 
+            QMessageBox.critical(self, "Erro de Valor", "Campos numéricos devem conter números válidos.")
+        except Exception as e:
+            QMessageBox.critical(self, "Erro Inesperado", f"Ocorreu um erro ao adicionar a peça: {e}")
     
     def select_file(self):
         if not self.project_directory:
             QMessageBox.warning(self, "Nenhum Projeto Ativo", "Inicie um projeto antes de carregar uma planilha.")
             return
+        
         file_path, _ = QFileDialog.getOpenFileName(self, "Selecionar Planilha", "", "Excel Files (*.xlsx *.xls)")
-        if file_path:
-            try:
-                df = pd.read_excel(file_path, header=0, decimal=','); df.columns = df.columns.str.strip().str.lower()
-                df = df.loc[:, ~df.columns.duplicated()]
-                for col in self.colunas_df:
-                    if col not in df.columns: df[col] = pd.NA
-                if 'furos' in df.columns:
-                    def parse_furos(x):
-                        if isinstance(x, list): return x
-                        if isinstance(x, str) and x.startswith('['):
-                            try: return json.loads(x.replace("'", "\""))
-                            except json.JSONDecodeError: return []
-                        return []
-                    df['furos'] = df['furos'].apply(parse_furos)
-                else:
-                    df['furos'] = [[] for _ in range(len(df))]
-                numeric_cols = [col for col in self.colunas_df if col != 'furos' and col != 'forma' and col != 'nome_arquivo']
-                for col in numeric_cols:
-                    if col in df.columns:
+        if not file_path:
+            return
+
+        try:
+            df = pd.read_excel(file_path, header=0, decimal=',')
+            df.columns = df.columns.str.strip().str.lower()
+            self.log_text.append(f"Lendo arquivo: {os.path.basename(file_path)}")
+
+            # --- INÍCIO DA CORREÇÃO (Leitura de Furos) ---
+            # O código anterior procurava uma coluna 'furos' com JSON.
+            # Esta nova lógica lê as colunas 'furo_N_...' (formato wide)
+            # e as transforma no formato de lista que o app espera.
+
+            # 1. Padronizar nomes de colunas (ex: 'furo_1_diam' -> 'furo_1_diametro')
+            rename_map = {}
+            for col in df.columns:
+                if 'furo_' in col and col.endswith('_diam'):
+                    rename_map[col] = col.replace('_diam', '_diametro')
+            if rename_map:
+                df = df.rename(columns=rename_map)
+                self.log_text.append(f"Colunas de diâmetro padronizadas.")
+
+            # 2. Definir os grupos de furos que vamos procurar
+            #    (Aumente o 'max_furos' se houver mais grupos)
+            
+            # <<< ATUALIZAÇÃO: Alterado de 6 para 8 >>>
+            max_furos = 8 
+            
+            furo_grupos = []
+            for i in range(1, max_furos + 1):
+                furo_grupos.append({
+                    'diam': f'furo_{i}_diametro',
+                    'x': f'furo_{i}_x',
+                    'y': f'furo_{i}_y'
+                })
+
+            # 3. Função para ser aplicada em cada *linha* do DataFrame
+            def processar_furos_da_linha(row):
+                furos_encontrados = []
+                for grupo in furo_grupos:
+                    col_diam = grupo['diam']
+                    col_x = grupo['x']
+                    col_y = grupo['y']
+                    
+                    # Verifica se as colunas necessárias existem no DataFrame
+                    if col_diam in row and col_x in row and col_y in row:
+                        try:
+                            # Tenta converter os valores para numérico
+                            diam = pd.to_numeric(row[col_diam], errors='coerce')
+                            x = pd.to_numeric(row[col_x], errors='coerce')
+                            y = pd.to_numeric(row[col_y], errors='coerce')
+                            
+                            # Apenas adiciona se o diâmetro for um número válido e > 0
+                            # e as coordenadas X/Y também forem válidas
+                            if pd.notna(diam) and diam > 0 and pd.notna(x) and pd.notna(y):
+                                furos_encontrados.append({
+                                    'diam': float(diam),
+                                    'x': float(x),
+                                    'y': float(y)
+                                })
+                        except Exception:
+                            # Ignora erros de conversão nesta linha/coluna específica
+                            pass
+                return furos_encontrados
+
+            # 4. Aplica a função e cria a coluna 'furos' que o app espera
+            df['furos'] = df.apply(processar_furos_da_linha, axis=1)
+            
+            # --- FIM DA CORREÇÃO ---
+
+            # O resto da lógica (criar colunas faltantes, converter numéricos)
+            # agora pode ser executado.
+            
+            df = df.loc[:, ~df.columns.duplicated()] # Remove colunas duplicadas
+            
+            # Garante que todas as colunas que o app precisa existam
+            for col in self.colunas_df:
+                if col not in df.columns: 
+                    df[col] = pd.NA
+            
+            # Converte colunas numéricas principais (muitas colunas de furo já são numéricas)
+            numeric_cols = [
+                'espessura', 'qtd', 'largura', 'altura', 'diametro', 'rt_base', 'rt_height', 
+                'trapezoid_large_base', 'trapezoid_small_base', 'trapezoid_height'
+            ]
+            
+            for col in numeric_cols:
+                if col in df.columns:
+                    # Garante que a coluna 'furos' não seja tocada aqui
+                    if col != 'furos':
                         df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
-                self.excel_df = df[self.colunas_df]
-                self.file_label.setText(f"Planilha: {os.path.basename(file_path)}"); self.update_table_display()
-            except Exception as e: QMessageBox.critical(self, "Erro de Leitura", f"Falha ao ler o arquivo: {e}")
+            
+            # Filtra o DF final para ter apenas as colunas esperadas
+            self.excel_df = df[self.colunas_df].copy()
+            
+            self.file_label.setText(f"Planilha: {os.path.basename(file_path)}")
+            self.update_table_display()
+            self.log_text.append(f"Planilha '{os.path.basename(file_path)}' carregada com sucesso.")
+            self.log_text.append(f"Furos processados (até {max_furos} grupos) a partir das colunas 'furo_N_...'.")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Erro de Leitura", f"Falha ao ler o arquivo: {e}\n\nVerifique o console para mais detalhes.")
+            print(f"Erro detalhado ao ler Excel: {e}")
+            import traceback
+            traceback.print_exc()
     
     def clear_excel_data(self):
         self.excel_df = pd.DataFrame(columns=self.colunas_df); self.file_label.setText("Nenhuma planilha selecionada"); self.update_table_display()

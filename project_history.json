@@ -38,5 +38,247 @@
                 "project_number": "2093"
             }
         ]
+    },
+    "6969696969": {
+        "project_number": "6969696969",
+        "save_date": "05/11/2025 14:19:17",
+        "pieces": [
+            {
+                "nome_arquivo": "Teste1",
+                "forma": "rectangle",
+                "espessura": 9.53,
+                "qtd": 14,
+                "largura": 250,
+                "altura": 450,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 14.0,
+                        "x": 50.0,
+                        "y": 60.0
+                    },
+                    {
+                        "diam": 14.0,
+                        "x": 200.0,
+                        "y": 60.0
+                    },
+                    {
+                        "diam": 14.0,
+                        "x": 50.0,
+                        "y": 225.0
+                    },
+                    {
+                        "diam": 14.0,
+                        "x": 200.0,
+                        "y": 225.0
+                    },
+                    {
+                        "diam": 14.0,
+                        "x": 50.0,
+                        "y": 390.0
+                    },
+                    {
+                        "diam": 14.0,
+                        "x": 200.0,
+                        "y": 390.0
+                    }
+                ],
+                "dxf_path": null,
+                "project_number": "6969696969"
+            },
+            {
+                "nome_arquivo": "Teste2",
+                "forma": "rectangle",
+                "espessura": 12.7,
+                "qtd": 6,
+                "largura": 350,
+                "altura": 650,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 18.0,
+                        "x": 50.0,
+                        "y": 525.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 300.0,
+                        "y": 525.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 50.0,
+                        "y": 325.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 300.0,
+                        "y": 325.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 50.0,
+                        "y": 125.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 300.0,
+                        "y": 125.0
+                    }
+                ],
+                "dxf_path": null,
+                "project_number": "6969696969"
+            },
+            {
+                "nome_arquivo": "Teste3",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 1,
+                "largura": 250,
+                "altura": 450,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 22.0,
+                        "x": 50.0,
+                        "y": 75.0
+                    },
+                    {
+                        "diam": 22.0,
+                        "x": 50.0,
+                        "y": 175.0
+                    },
+                    {
+                        "diam": 22.0,
+                        "x": 50.0,
+                        "y": 275.0
+                    },
+                    {
+                        "diam": 22.0,
+                        "x": 50.0,
+                        "y": 375.0
+                    },
+                    {
+                        "diam": 22.0,
+                        "x": 200.0,
+                        "y": 75.0
+                    },
+                    {
+                        "diam": 22.0,
+                        "x": 200.0,
+                        "y": 175.0
+                    }
+                ],
+                "dxf_path": null,
+                "project_number": "6969696969"
+            },
+            {
+                "nome_arquivo": "Teste4",
+                "forma": "rectangle",
+                "espessura": 25.4,
+                "qtd": 2,
+                "largura": 120,
+                "altura": 560,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 18.0,
+                        "x": 60.0,
+                        "y": 45.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 60.0,
+                        "y": 150.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 60.0,
+                        "y": 410.0
+                    },
+                    {
+                        "diam": 18.0,
+                        "x": 60.0,
+                        "y": 515.0
+                    }
+                ],
+                "dxf_path": null,
+                "project_number": "6969696969"
+            }
+        ]
+    },
+    "KLOWS": {
+        "project_number": "KLOWS",
+        "save_date": "05/11/2025 16:10:49",
+        "pieces": [
+            {
+                "nome_arquivo": "Teste1",
+                "forma": "rectangle",
+                "espessura": 9.53,
+                "qtd": 10,
+                "largura": 300,
+                "altura": 400,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 20.0,
+                        "x": 60.0,
+                        "y": 350.0
+                    },
+                    {
+                        "diam": 20.0,
+                        "x": 240.0,
+                        "y": 350.0
+                    },
+                    {
+                        "diam": 20.0,
+                        "x": 60.0,
+                        "y": 200.0
+                    },
+                    {
+                        "diam": 20.0,
+                        "x": 240.0,
+                        "y": 200.0
+                    },
+                    {
+                        "diam": 20.0,
+                        "x": 60.0,
+                        "y": 50.0
+                    },
+                    {
+                        "diam": 20.0,
+                        "x": 240.0,
+                        "y": 50.0
+                    }
+                ],
+                "dxf_path": null,
+                "project_number": "KLOWS"
+            }
+        ]
     }
 }
