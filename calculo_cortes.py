@@ -73,7 +73,7 @@ def _merge_scraps(scraps):
             
     return scraps
 
-def encontrar_sobras(chapa_largura, chapa_altura, pecas_alocadas, min_dim=50):
+def encontrar_sobras(chapa_largura, chapa_altura, pecas_alocadas, min_dim=50, force_aproveitavel=False):
     """
     Encontra os maiores retângulos de sobra em uma chapa.
     Este método usa um algoritmo de varredura (Sweep-line) para robustez,
@@ -132,10 +132,15 @@ def encontrar_sobras(chapa_largura, chapa_altura, pecas_alocadas, min_dim=50):
     # 7. Filtrar pelo tamanho mínimo e classificar
     sobras_finais = []
     for s in sobras_fundidas:
-        if s['largura'] >= min_dim and s['altura'] >= min_dim:
+        # --- INÍCIO DA CORREÇÃO ---
+        # Se force_aproveitavel for True, ignora o min_dim e trata tudo como aproveitável.
+        # A verificação de dimensão mínima só se aplica se não for forçado.
+        if force_aproveitavel or (s['largura'] >= min_dim and s['altura'] >= min_dim):
             s['y'] = chapa_altura - s['y'] - s['altura']
             
-            s['tipo_sobra'] = 'aproveitavel' if min(s['largura'], s['altura']) >= 300 and max(s['largura'], s['altura']) >= 300 else 'nao_aproveitavel'
+            # Se forçado, tudo é 'aproveitavel'. Senão, usa a regra padrão.
+            s['tipo_sobra'] = 'aproveitavel' if force_aproveitavel or (min(s['largura'], s['altura']) >= 300 and max(s['largura'], s['altura']) >= 300) else 'nao_aproveitavel'
+            # --- FIM DA CORREÇÃO ---
             
             # ATRIBUIÇÃO DE PONTUAÇÃO DE REUTILIZAÇÃO
             score = 0
@@ -311,7 +316,11 @@ def calcular_plano_de_corte_em_bins(pecas, offset, espessura, is_guillotine, bin
                         
                         resumo_pecas = [{"tipo": t, "qtd": q} for t, q in pecas_contagem.items()]
                         pecas_para_geometria = [{'x': r.x, 'y': r.y, 'largura': r.width, 'altura': r.height} for r in chapa_alocada]
-                        sobras_na_area_nesting = encontrar_sobras(nesting_width, nesting_height, pecas_para_geometria)
+                        # --- INÍCIO DA CORREÇÃO ---
+                        # Verifica se o nome do projeto indica material especial
+                        project_name = os.environ.get('CURRENT_PROJECT_NAME', '').upper()
+                        force_aproveitavel = any(mat in project_name for mat in ['FF', 'GALV', 'XADREZ'])
+                        sobras_na_area_nesting = encontrar_sobras(nesting_width, nesting_height, pecas_para_geometria, force_aproveitavel=force_aproveitavel)
                         for s in sobras_na_area_nesting: s['x'] += margin; s['y'] += margin
 
                         planos_agrupados[assinatura] = {

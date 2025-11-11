@@ -280,5 +280,430 @@
                 "project_number": "KLOWS"
             }
         ]
+    },
+    "2123": {
+        "project_number": "2123",
+        "save_date": "07/11/2025 15:47:40",
+        "pieces": [
+            {
+                "nome_arquivo": "2123_DES2005_15,88",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 15.0,
+                "largura": 400.0,
+                "altura": 400.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2123"
+            },
+            {
+                "nome_arquivo": "2123_DES2007_3.00",
+                "forma": "rectangle",
+                "espessura": 3.0,
+                "qtd": 27.0,
+                "largura": 1000.0,
+                "altura": 1000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2123"
+            }
+        ]
+    },
+    "2124": {
+        "project_number": "2124",
+        "save_date": "07/11/2025 15:48:21",
+        "pieces": [
+            {
+                "nome_arquivo": "DES2021",
+                "forma": "rectangle",
+                "espessura": 2.0,
+                "qtd": 1.0,
+                "largura": 1.0,
+                "altura": 1.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2124"
+            }
+        ]
+    },
+    "2126": {
+        "project_number": "2126",
+        "save_date": "10/11/2025 13:53:32",
+        "pieces": [
+            {
+                "nome_arquivo": "2126_DES2022_6.35",
+                "forma": "rectangle",
+                "espessura": 6.35,
+                "qtd": 30.0,
+                "largura": 250.0,
+                "altura": 200.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2126"
+            },
+            {
+                "nome_arquivo": "2126_DES2023_6.35",
+                "forma": "rectangle",
+                "espessura": 6.35,
+                "qtd": 59.0,
+                "largura": 200.0,
+                "altura": 200.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2126"
+            },
+            {
+                "nome_arquivo": "2126_DES2024_6.35",
+                "forma": "rectangle",
+                "espessura": 6.35,
+                "qtd": 12.0,
+                "largura": 250.0,
+                "altura": 250.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2126"
+            }
+        ]
+    },
+    "2127": {
+        "project_number": "2127",
+        "save_date": "10/11/2025 14:07:12",
+        "pieces": [
+            {
+                "nome_arquivo": "2127_DES2025_15.88",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 1.0,
+                "largura": 1200.0,
+                "altura": 1000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2127"
+            }
+        ]
+    },
+    "6767": {
+        "project_number": "6767",
+        "save_date": "10/11/2025 14:48:58",
+        "pieces": [
+            {
+                "nome_arquivo": "DES2026",
+                "forma": "rectangle",
+                "espessura": 2.0,
+                "qtd": 100.0,
+                "largura": 200.0,
+                "altura": 200.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 15.0,
+                        "x": 35.0,
+                        "y": 35.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 165.0,
+                        "y": 35.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 165.0,
+                        "y": 165.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 35.0,
+                        "y": 165.0
+                    }
+                ],
+                "dxf_path": 0.0,
+                "project_number": "6767"
+            },
+            {
+                "nome_arquivo": "DES2027",
+                "forma": "rectangle",
+                "espessura": 2.0,
+                "qtd": 300.0,
+                "largura": 500.0,
+                "altura": 500.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [
+                    {
+                        "diam": 15.0,
+                        "x": 35.0,
+                        "y": 35.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 465.0,
+                        "y": 35.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 465.0,
+                        "y": 465.0
+                    },
+                    {
+                        "diam": 15.0,
+                        "x": 35.0,
+                        "y": 465.0
+                    }
+                ],
+                "dxf_path": 0.0,
+                "project_number": "6767"
+            }
+        ]
+    },
+    "2129": {
+        "project_number": "2129",
+        "save_date": "10/11/2025 16:07:02",
+        "pieces": [
+            {
+                "nome_arquivo": "2129_DES2028_.75",
+                "forma": "rectangle",
+                "espessura": 4.75,
+                "qtd": 1.0,
+                "largura": 882.0,
+                "altura": 1000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2129"
+            }
+        ]
+    },
+    "2130": {
+        "project_number": "2130",
+        "save_date": "10/11/2025 16:10:25",
+        "pieces": [
+            {
+                "nome_arquivo": "2130_DES2032_3.00",
+                "forma": "rectangle",
+                "espessura": 3.0,
+                "qtd": 2.0,
+                "largura": 216.0,
+                "altura": 3000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2130"
+            },
+            {
+                "nome_arquivo": "2130_DES2031_6.35",
+                "forma": "rectangle",
+                "espessura": 6.35,
+                "qtd": 2.0,
+                "largura": 205.0,
+                "altura": 2000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2130"
+            }
+        ]
+    },
+    "2131": {
+        "project_number": "2131",
+        "save_date": "10/11/2025 16:19:21",
+        "pieces": [
+            {
+                "nome_arquivo": "2131_DES2033_4.75",
+                "forma": "rectangle",
+                "espessura": 4.75,
+                "qtd": 13.0,
+                "largura": 100.0,
+                "altura": 6000.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2131"
+            }
+        ]
+    },
+    "2132": {
+        "project_number": "2132",
+        "save_date": "10/11/2025 16:46:23",
+        "pieces": [
+            {
+                "nome_arquivo": "2132_DES2034",
+                "forma": "right_triangle",
+                "espessura": 15.88,
+                "qtd": 15.0,
+                "largura": 0.0,
+                "altura": 0.0,
+                "diametro": 0.0,
+                "rt_base": 274.0,
+                "rt_height": 274.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2132"
+            },
+            {
+                "nome_arquivo": "2132_DES2035",
+                "forma": "right_triangle",
+                "espessura": 15.88,
+                "qtd": 3.0,
+                "largura": 0.0,
+                "altura": 0.0,
+                "diametro": 0.0,
+                "rt_base": 137.0,
+                "rt_height": 274.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2132"
+            },
+            {
+                "nome_arquivo": "2132_DES2036",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 15.0,
+                "largura": 304.0,
+                "altura": 203.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2132"
+            },
+            {
+                "nome_arquivo": "2132_DES2037",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 3.0,
+                "largura": 203.0,
+                "altura": 152.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2132"
+            },
+            {
+                "nome_arquivo": "2132_DES2038",
+                "forma": "rectangle",
+                "espessura": 15.88,
+                "qtd": 18.0,
+                "largura": 272.0,
+                "altura": 203.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2132"
+            }
+        ]
+    },
+    "2134_XADREZ": {
+        "project_number": "2134_XADREZ",
+        "save_date": "10/11/2025 16:53:36",
+        "pieces": [
+            {
+                "nome_arquivo": "2134_XADREZ_DES2040",
+                "forma": "rectangle",
+                "espessura": 2.65,
+                "qtd": 30.0,
+                "largura": 99.0,
+                "altura": 450.0,
+                "diametro": 0.0,
+                "rt_base": 0.0,
+                "rt_height": 0.0,
+                "trapezoid_large_base": 0.0,
+                "trapezoid_small_base": 0.0,
+                "trapezoid_height": 0.0,
+                "furos": [],
+                "dxf_path": 0.0,
+                "project_number": "2134_XADREZ"
+            }
+        ]
     }
 }

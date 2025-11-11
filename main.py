@@ -604,11 +604,16 @@ class MainWindow(QMainWindow):
             return
         combined_df = pd.concat(dfs_to_concat, ignore_index=True)
 
-        default_filename = os.path.join(self.project_directory, f"CUSTO_PLASMA-LASER_V6_{project_number}.xlsx")
+        default_filename = os.path.join(self.project_directory, f"Relacao-de-peças-projeto_{project_number}.xlsx")
         save_path, _ = QFileDialog.getSaveFileName(self, "Salvar Resumo do Projeto", default_filename, "Excel Files (*.xlsx)")
         if not save_path:
             return
 
+        # --- INÍCIO DA CORREÇÃO ---
+        # Armazena o nome do projeto em uma variável de ambiente para ser acessível
+        # pela função 'encontrar_sobras' no outro módulo.
+        os.environ['CURRENT_PROJECT_NAME'] = project_number
+        # --- FIM DA CORREÇÃO ---
         self.set_buttons_enabled_on_process(False)
         self.progress_bar.setVisible(True)
         self.progress_bar.setValue(0)
@@ -642,6 +647,11 @@ class MainWindow(QMainWindow):
             
             start_row = 4 # A lista de peças sempre começará a ser preenchida na linha 4
             last_filled_row = start_row - 1 # Guarda a última linha preenchida
+
+            # --- INÍCIO DA CORREÇÃO ---
+            # Cria uma lista para armazenar todas as sobras aproveitáveis de todos os cálculos
+            todas_as_sobras_aproveitaveis = []
+            # --- FIM DA CORREÇÃO ---
 
             # --- PASSO 2: PREENCHER A LISTA DE PEÇAS (COLUNAS A ATÉ I) ---
             for index, (_, row_data) in enumerate(combined_df.iterrows()):
@@ -756,6 +766,16 @@ class MainWindow(QMainWindow):
                 
                 if not resultado: continue
 
+                # --- INÍCIO DA CORREÇÃO ---
+                # Coleta as sobras aproveitáveis do resultado do nesting
+                for plano in resultado.get('planos_unicos', []):
+                    for sobra in plano.get('sobras', []):
+                        if sobra.get('tipo_sobra') == 'aproveitavel':
+                            # Adiciona a sobra com a espessura e quantidade de repetições do plano
+                            sobra['espessura'] = espessura
+                            sobra['qtd'] = plano.get('repeticoes', 1)
+                            todas_as_sobras_aproveitaveis.append(sobra)
+                # --- FIM DA CORREÇÃO ---
                 # --- (NOVO) PASSO 4: Captura da PERCA REAL calculada ---
                 percentual_perda = resultado.get('percentual_perda_total_sucata', 0)
                 
@@ -841,6 +861,48 @@ class MainWindow(QMainWindow):
             
             # --- FIM DO LOOP DE NESTING ---
 
+            # --- INÍCIO DA LÓGICA CONDICIONAL PARA SOBRAS ---
+            # Verifica se o nome do projeto contém as palavras-chave para materiais especiais.
+            project_name_upper = project_number.upper()
+            is_special_material = any(keyword in project_name_upper for keyword in ['FF', 'GALV', 'XADREZ'])
+
+            if is_special_material and todas_as_sobras_aproveitaveis:
+                self.log_text.append("Material especial detectado. Adicionando sobras aproveitáveis à lista de peças...")
+                QApplication.processEvents()
+
+                # Agrupa sobras por dimensões e espessura para somar as quantidades
+                sobras_agrupadas = {}
+                for s in todas_as_sobras_aproveitaveis:
+                    chave = (round(s['largura']), round(s['altura']), s['espessura'])
+                    if chave not in sobras_agrupadas:
+                        sobras_agrupadas[chave] = {'qtd': 0, 'largura': s['largura'], 'altura': s['altura'], 'espessura': s['espessura']}
+                    sobras_agrupadas[chave]['qtd'] += s['qtd']
+
+                # Itera sobre as sobras agrupadas e as adiciona na planilha
+                for sobra_agrupada in sobras_agrupadas.values():
+                    last_filled_row += 1 # Move para a próxima linha vazia
+                    
+                    ws.cell(row=last_filled_row, column=1, value=project_number)
+                    ws.cell(row=last_filled_row, column=2, value="SOBRA") # Nome da peça
+                    ws.cell(row=last_filled_row, column=3, value=sobra_agrupada['qtd']) # Quantidade
+                    ws.cell(row=last_filled_row, column=4, value='R') # Forma (Retângulo)
+                    ws.cell(row=last_filled_row, column=5, value=0) # Furos
+                    ws.cell(row=last_filled_row, column=6, value=0) # Diâmetro Furo
+                    ws.cell(row=last_filled_row, column=7, value=sobra_agrupada['espessura']) # Espessura
+                    ws.cell(row=last_filled_row, column=8, value=sobra_agrupada['largura']) # Largura
+                    ws.cell(row=last_filled_row, column=9, value=sobra_agrupada['altura']) # Altura
+
+                # Re-oculta as linhas, agora considerando as novas linhas de sobra
+                start_hide_row = last_filled_row + 1
+                end_hide_row = 207
+                if start_hide_row <= end_hide_row:
+                    ws.row_dimensions.group(start_hide_row, end_hide_row, hidden=True)
+                    self.log_text.append(f"Linhas de {start_hide_row} a {end_hide_row} re-ocultadas.")
+            else:
+                if not is_special_material:
+                    self.log_text.append("Projeto não é de material especial. Sobras não serão adicionadas à planilha.")
+            # --- FIM DA LÓGICA CONDICIONAL PARA SOBRAS ---
+
             # --- (NOVO) PASSO 5: PREENCHER PERDA (D2) COM BASE NOS RESULTADOS REAIS ---
             if total_pecas_contadas_real > 0:
                 avg_loss_real = total_perca_ponderada_real / total_pecas_contadas_real
@@ -891,6 +953,11 @@ class MainWindow(QMainWindow):
         finally:
             self.set_buttons_enabled_on_process(True)
             self.progress_bar.setVisible(False)
+            # --- INÍCIO DA CORREÇÃO ---
+            # Limpa a variável de ambiente após o uso
+            if 'CURRENT_PROJECT_NAME' in os.environ:
+                del os.environ['CURRENT_PROJECT_NAME']
+            # --- FIM DA CORREÇÃO ---
         
     # ... (Aqui termina sua função export_project_to_excel) ...
     # ... (Cole a nova função abaixo) ...
