@@ -1,0 +1,155 @@
+2025-11-13 08:37:19,400 - INFO - --- INICIANDO ORQUESTRAÇÃO DE NESTING (ESTRATÉGIA OTIMIZADA) PARA ESPESSURA 2.0mm ---
+2025-11-13 08:37:19,400 - INFO - Ordenando 1 tipos de peças por área para otimização.
+2025-11-13 08:37:19,400 - INFO - Iniciando cálculo de corte para 1 tipos de peças em 200 bins disponíveis.
+2025-11-13 08:37:19,400 - INFO - --- TENTATIVA COM 1 CHAPAS ---
+2025-11-13 08:37:19,420 - INFO - --- TENTATIVA COM 2 CHAPAS ---
+2025-11-13 08:37:19,422 - INFO - SUCESSO! Algoritmo 'MaxRectsBssf' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,422 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,422 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,422 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,423 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,424 - INFO - SUCESSO! Algoritmo 'MaxRectsBaf' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,424 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,425 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,425 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,425 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,426 - INFO - SUCESSO! Algoritmo 'MaxRectsBlsf' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,427 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,427 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,427 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,427 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:37:19,431 - INFO - SUCESSO! Algoritmo 'SkylineBl' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,431 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,431 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,431 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,431 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:37:19,436 - INFO - SUCESSO! Algoritmo 'SkylineMwf' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,437 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,437 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,437 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,437 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,442 - INFO - SUCESSO! Algoritmo 'SkylineBlWm' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,442 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,442 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,442 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,443 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:37:19,448 - INFO - SUCESSO! Algoritmo 'SkylineMwfl' conseguiu alocar todas as peças em 2 chapas.
+2025-11-13 08:37:19,448 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,448 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:37:19,448 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:37:19,448 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:37:19,449 - INFO - Encontrado o número mínimo de chapas: 2. Selecionando a melhor solução.
+2025-11-13 08:37:19,449 - INFO - Cálculo finalizado. Melhor resultado: 2 chapas, 55.56% de aproveitamento.
+2025-11-13 08:37:19,449 - INFO - --- ORQUESTRAÇÃO OTIMIZADA FINALIZADA ---
+2025-11-13 08:41:56,021 - INFO - --- INICIANDO ORQUESTRAÇÃO DE NESTING (ESTRATÉGIA OTIMIZADA) PARA ESPESSURA 9.53mm ---
+2025-11-13 08:41:56,021 - INFO - Ordenando 1 tipos de peças por área para otimização.
+2025-11-13 08:41:56,021 - INFO - Iniciando cálculo de corte para 1 tipos de peças em 200 bins disponíveis.
+2025-11-13 08:41:56,021 - INFO - --- TENTATIVA COM 1 CHAPAS ---
+2025-11-13 08:41:56,022 - INFO - SUCESSO! Algoritmo 'MaxRectsBssf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,022 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,022 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,022 - INFO - SUCESSO! Algoritmo 'MaxRectsBaf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,022 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,022 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,023 - INFO - SUCESSO! Algoritmo 'MaxRectsBlsf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,023 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,023 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 7 sobras válidas.
+2025-11-13 08:41:56,024 - INFO - SUCESSO! Algoritmo 'SkylineBl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,024 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,024 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,025 - INFO - SUCESSO! Algoritmo 'SkylineMwf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,025 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,026 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,027 - INFO - SUCESSO! Algoritmo 'SkylineBlWm' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,027 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,027 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,028 - INFO - SUCESSO! Algoritmo 'SkylineMwfl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,028 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,028 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,028 - INFO - Encontrado o número mínimo de chapas: 1. Selecionando a melhor solução.
+2025-11-13 08:41:56,028 - INFO - Cálculo finalizado. Melhor resultado: 1 chapas, 43.75% de aproveitamento.
+2025-11-13 08:41:56,028 - INFO - --- ORQUESTRAÇÃO OTIMIZADA FINALIZADA ---
+2025-11-13 08:41:56,031 - INFO - --- INICIANDO ORQUESTRAÇÃO DE NESTING (ESTRATÉGIA OTIMIZADA) PARA ESPESSURA 12.7mm ---
+2025-11-13 08:41:56,031 - INFO - Ordenando 1 tipos de peças por área para otimização.
+2025-11-13 08:41:56,031 - INFO - Iniciando cálculo de corte para 1 tipos de peças em 200 bins disponíveis.
+2025-11-13 08:41:56,031 - INFO - --- TENTATIVA COM 1 CHAPAS ---
+2025-11-13 08:41:56,031 - INFO - SUCESSO! Algoritmo 'MaxRectsBssf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,031 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,031 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,032 - INFO - SUCESSO! Algoritmo 'MaxRectsBaf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,032 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,032 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,032 - INFO - SUCESSO! Algoritmo 'MaxRectsBlsf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,032 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,032 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 4 sobras válidas.
+2025-11-13 08:41:56,032 - INFO - SUCESSO! Algoritmo 'SkylineBl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,033 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,033 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,033 - INFO - SUCESSO! Algoritmo 'SkylineMwf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,033 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,033 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,034 - INFO - SUCESSO! Algoritmo 'SkylineBlWm' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,034 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,034 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,034 - INFO - SUCESSO! Algoritmo 'SkylineMwfl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,034 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,034 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 3 sobras válidas.
+2025-11-13 08:41:56,034 - INFO - Encontrado o número mínimo de chapas: 1. Selecionando a melhor solução.
+2025-11-13 08:41:56,034 - INFO - Cálculo finalizado. Melhor resultado: 1 chapas, 37.92% de aproveitamento.
+2025-11-13 08:41:56,035 - INFO - --- ORQUESTRAÇÃO OTIMIZADA FINALIZADA ---
+2025-11-13 08:41:56,037 - INFO - --- INICIANDO ORQUESTRAÇÃO DE NESTING (ESTRATÉGIA OTIMIZADA) PARA ESPESSURA 15.88mm ---
+2025-11-13 08:41:56,037 - INFO - Ordenando 1 tipos de peças por área para otimização.
+2025-11-13 08:41:56,037 - INFO - Iniciando cálculo de corte para 1 tipos de peças em 200 bins disponíveis.
+2025-11-13 08:41:56,037 - INFO - --- TENTATIVA COM 1 CHAPAS ---
+2025-11-13 08:41:56,037 - INFO - SUCESSO! Algoritmo 'MaxRectsBssf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,037 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,037 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,037 - INFO - SUCESSO! Algoritmo 'MaxRectsBaf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,037 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,038 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,038 - INFO - SUCESSO! Algoritmo 'MaxRectsBlsf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,038 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,038 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,038 - INFO - SUCESSO! Algoritmo 'SkylineBl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,038 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,038 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,038 - INFO - SUCESSO! Algoritmo 'SkylineMwf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,038 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,038 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,038 - INFO - SUCESSO! Algoritmo 'SkylineBlWm' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,038 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,038 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,039 - INFO - SUCESSO! Algoritmo 'SkylineMwfl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,039 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,039 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,039 - INFO - Encontrado o número mínimo de chapas: 1. Selecionando a melhor solução.
+2025-11-13 08:41:56,039 - INFO - Cálculo finalizado. Melhor resultado: 1 chapas, 3.12% de aproveitamento.
+2025-11-13 08:41:56,039 - INFO - --- ORQUESTRAÇÃO OTIMIZADA FINALIZADA ---
+2025-11-13 08:41:56,041 - INFO - --- INICIANDO ORQUESTRAÇÃO DE NESTING (ESTRATÉGIA OTIMIZADA) PARA ESPESSURA 25.4mm ---
+2025-11-13 08:41:56,041 - INFO - Ordenando 1 tipos de peças por área para otimização.
+2025-11-13 08:41:56,041 - INFO - Iniciando cálculo de corte para 1 tipos de peças em 200 bins disponíveis.
+2025-11-13 08:41:56,041 - INFO - --- TENTATIVA COM 1 CHAPAS ---
+2025-11-13 08:41:56,041 - INFO - SUCESSO! Algoritmo 'MaxRectsBssf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,042 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,042 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 1 sobras válidas.
+2025-11-13 08:41:56,042 - INFO - SUCESSO! Algoritmo 'MaxRectsBaf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,042 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,042 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 1 sobras válidas.
+2025-11-13 08:41:56,042 - INFO - SUCESSO! Algoritmo 'MaxRectsBlsf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,042 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,042 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,042 - INFO - SUCESSO! Algoritmo 'SkylineBl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,042 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,042 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,042 - INFO - SUCESSO! Algoritmo 'SkylineMwf' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,043 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,043 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 1 sobras válidas.
+2025-11-13 08:41:56,043 - INFO - SUCESSO! Algoritmo 'SkylineBlWm' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,043 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,043 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,043 - INFO - SUCESSO! Algoritmo 'SkylineMwfl' conseguiu alocar todas as peças em 1 chapas.
+2025-11-13 08:41:56,043 - DEBUG - Iniciando 'encontrar_sobras' com algoritmo de varredura (Scanline).
+2025-11-13 08:41:56,043 - DEBUG - Finalizado 'encontrar_sobras' (Scanline). Encontradas 2 sobras válidas.
+2025-11-13 08:41:56,043 - INFO - Encontrado o número mínimo de chapas: 1. Selecionando a melhor solução.
+2025-11-13 08:41:56,043 - INFO - Cálculo finalizado. Melhor resultado: 1 chapas, 3.73% de aproveitamento.
+2025-11-13 08:41:56,043 - INFO - --- ORQUESTRAÇÃO OTIMIZADA FINALIZADA ---
