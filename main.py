@@ -684,19 +684,6 @@ class MainWindow(QMainWindow):
                 
                 self.progress_bar.setValue(int(((index + 1) / (len(combined_df) * 2)) * 100))
 
-            # --- PASSO 3: OCULTAR LINHAS (DA ÚLTIMA PEÇA ATÉ A 207) ---
-            # (Ajustado para 211, que é a linha "RELATÓRIO DE APROVEITAMENTO")
-            try:
-                start_hide_row = last_filled_row + 1
-                end_hide_row = 207 # Oculta até a linha ANTES do relatório
-                if start_hide_row <= end_hide_row:
-                    ws.row_dimensions.group(start_hide_row, end_hide_row, hidden=True)
-                    self.log_text.append(f"Linhas da {start_hide_row} até {end_hide_row} ocultadas com sucesso.")
-                else:
-                    self.log_text.append(f"Nenhuma linha para ocultar (Última linha: {last_filled_row}).")
-            except Exception as e:
-                self.log_text.append(f"AVISO: Falha ao ocultar linhas. {e}")
-            
             self.log_text.append("Calculando aproveitamento de chapas...")
             QApplication.processEvents()
 
@@ -894,7 +881,7 @@ class MainWindow(QMainWindow):
 
                 # Re-oculta as linhas, agora considerando as novas linhas de sobra
                 start_hide_row = last_filled_row + 1
-                end_hide_row = 207
+                end_hide_row = 207 
                 if start_hide_row <= end_hide_row:
                     ws.row_dimensions.group(start_hide_row, end_hide_row, hidden=True)
                     self.log_text.append(f"Linhas de {start_hide_row} a {end_hide_row} re-ocultadas.")
@@ -902,10 +889,10 @@ class MainWindow(QMainWindow):
                 if not is_special_material:
                     self.log_text.append("Projeto não é de material especial. Sobras não serão adicionadas à planilha.")
             # --- FIM DA LÓGICA CONDICIONAL PARA SOBRAS ---
-
-            # --- (NOVO) PASSO 5: PREENCHER PERDA (D2) COM BASE NOS RESULTADOS REAIS ---
+            
+            # --- PASSO 3: PREENCHER PERDA (D2) COM BASE NOS RESULTADOS REAIS ---
             if total_pecas_contadas_real > 0:
-                avg_loss_real = total_perca_ponderada_real / total_pecas_contadas_real
+                avg_loss_real = total_perca_ponderada_real / total_pecas_contadas_real if total_pecas_contadas_real > 0 else 0
                 # A perca é um percentual (ex: 20.01), mas a célula D2 espera um decimal (ex: 0.2001)
                 ws['D2'] = avg_loss_real / 100.0 
                 self.log_text.append(f"Perca média ponderada REAL ({avg_loss_real:.2f}%) preenchida em D2.")
@@ -913,32 +900,76 @@ class MainWindow(QMainWindow):
                 ws['D2'] = 0
                 self.log_text.append("Nenhuma peça para calcular perca real. Preenchido 0 em D2.")
 
-            # --- (CORRIGIDO) PASSO 6: PREENCHER COLUNA W CONFORME SUA SOLICITAÇÃO ---
+            # --- PASSO 4: PREENCHER COLUNA W (PERDA POR ESPESSURA) ---
             self.log_text.append("Atualizando tabela de perdas (Coluna W) com resultados do nesting...")
+
+            # Passo A: Normaliza as chaves do mapa de resultados para floats arredondados.
+            perda_map_arredondado = {round(float(k), 2): v for k, v in perda_results_map.items()}
+
+            # <<< INÍCIO DA CORREÇÃO >>>
             
-            # (CORRIGIDO) Loop para encontrar a espessura na Coluna V, começando da linha 215
-            # A sua tabela vai da linha 215 (Índice 1) até 239 (Índice 25)
-            for row_idx in range(215, 240): 
-                esp_cell = ws.cell(row=row_idx, column=22) # Coluna V (ESPESSURA)
-                if esp_cell.value is None:
-                    break # Para se a tabela terminar
-                try:
-                    esp_template = float(esp_cell.value)
+            # CORREÇÃO 1: O range correto.
+            # A sua tabela de 25 itens (da imagem) muito provavelmente começa na linha 215.
+            # Linha 213 = Título ("Perda não cobrada")
+            # Linha 214 = Cabeçalho ("ESPESSURA")
+            # Linha 215 = Dado ("1,20")
+            # O range(215, 240) cobre 25 linhas (de 215 a 239).
+            
+            start_row = 213
+            num_rows = 25
+            end_row_exclusive = start_row + num_rows # 213 + 25 = 240
+            
+            self.log_text.append(f"Atualizando {num_rows} linhas da tabela de perdas (V{start_row}:W{end_row_exclusive - 1})...")
+
+            # Itera pelas 25 linhas da tabela
+            for row_idx in range(start_row, end_row_exclusive):  # range(215, 240)
+                # Coluna V (ESPESSURA)
+                esp_cell = ws.cell(row=row_idx, column=22) 
+                
+                # Se a célula V estiver vazia, limpa a célula W
+                if esp_cell.value is None or str(esp_cell.value).strip() == "": 
+                    ws.cell(row=row_idx, column=23, value=None) # Coluna W
+                    continue
                     
-                    # Verifica se temos um resultado de nesting para essa espessura
-                    # ex: O mapa tem {12.7: 20.43}
-                    if esp_template in perda_results_map:
-                        
-                        # Encontrou a espessura! (ex: 12,70 na linha 233)
-                        
-                        # Converte a perca (ex: 20.43) para decimal (ex: 0.2043) para o Excel
-                        perda_para_escrever = perda_results_map[esp_template] / 100.0
-                        
-                        # Escreve a perca calculada na Coluna W (ex: 0.2043 em W233)
-                        ws.cell(row=row_idx, column=23, value=perda_para_escrever) # <--- COLUNA W
+                try:
+                    # CORREÇÃO 2: A falha principal.
+                    # A planilha usa VÍRGULA ("1,20"). O float() do Python falha com vírgulas.
+                    # Convertemos para string, trocamos a vírgula por ponto, e SÓ ENTÃO convertemos para float.
+                    
+                    esp_valor_str = str(esp_cell.value).replace(',', '.')
+                    esp_template = round(float(esp_valor_str), 2)
+                    
+                    # Procura a espessura no mapa de resultados do nesting
+                    if esp_template in perda_map_arredondado:
+                        # Encontrou! Escreve o valor calculado (ex: 20.43% -> 0.2043)
+                        perda_para_escrever = perda_map_arredondado[esp_template] / 100.0
+                        ws.cell(row=row_idx, column=23, value=perda_para_escrever) # Coluna W
+                    else:
+                        # Se a espessura existe na tabela mas NÃO foi
+                        # calculada, zera o valor para não usar dado antigo.
+                        ws.cell(row=row_idx, column=23, value=0.0) # Coluna W
                         
                 except (ValueError, TypeError):
-                    continue # Ignora linhas mal formatadas na tabela
+                    # Se ainda assim falhar (ex: a célula é texto), loga e deixa em branco
+                    self.log_text.append(f"AVISO: Valor não numérico na célula V{row_idx}: '{esp_cell.value}'. Deixando em branco.")
+                    ws.cell(row=row_idx, column=23, value=None) # Coluna W
+                    continue
+
+            # --- PASSO 5: OCULTAR LINHAS (LÓGICA CORRIGIDA E MOVIDA PARA O FINAL) ---
+            try:
+                # A última linha preenchida (last_filled_row) agora inclui as sobras, se houver.
+                start_hide_row = last_filled_row + 1
+                end_hide_row = 207 # Linha final para ocultar (antes do relatório)
+                
+                if start_hide_row <= end_hide_row:
+                    # Oculta o grupo de linhas de uma vez
+                    ws.row_dimensions.group(start_hide_row, end_hide_row, hidden=True)
+                    self.log_text.append(f"Linhas da {start_hide_row} até {end_hide_row} ocultadas com sucesso.")
+                else:
+                    # Isso pode acontecer se a lista de peças + sobras for muito grande
+                    self.log_text.append(f"Nenhuma linha para ocultar (Última linha preenchida: {last_filled_row}).")
+            except Exception as e:
+                self.log_text.append(f"AVISO: Falha ao ocultar linhas. {e}")
 
             self.log_text.append("Salvando arquivo Excel...")
             QApplication.processEvents()
@@ -959,8 +990,6 @@ class MainWindow(QMainWindow):
                 del os.environ['CURRENT_PROJECT_NAME']
             # --- FIM DA CORREÇÃO ---
         
-    # ... (Aqui termina sua função export_project_to_excel) ...
-    # ... (Cole a nova função abaixo) ...
 
     def _generate_pdf_from_excel(self, excel_path, num_pecas):
         """
